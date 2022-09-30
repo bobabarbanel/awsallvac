@@ -3,9 +3,10 @@ $(function () {
     const startDate = $('startDate').text().trim();
     const timeLeft = $('.countdown_timer');
     const timeStamp = $("#time");
+    const MINUTES = 1;
 
     timeStamp.text("As of " + new Date())
-    const REFRESH_TIME = 3 * 60 * 1000; // 3 minutes
+    const REFRESH_TIME = MINUTES * 60 * 1000; // 3 minutes
 
     const TRANSITION_COLOR = '#AED6F1';
     const AFTER_TRANSITION_COLORS = {
@@ -28,12 +29,12 @@ $(function () {
         const indicator = setInterval(() => {
             const nowMS = Date.now() - start;
             const now = nowMS / 1000 / 60;
-            let min = Math.floor(3 - now);
-            let sec = Math.floor(((3 - now) - min) * 60);
+            let min = Math.floor(MINUTES - now);
+            let sec = Math.floor(((MINUTES - now) - min) * 60);
             sec = Math.round(sec / 5) * 5;
             if (sec < 10) sec = '0' + sec;
             if (min < 0) {
-                min = 3;
+                min = MINUTES;
                 sec = '00';
             }
             timeLeft.html(`<i class="fas fa-history"></i>&nbsp;${min}:${sec}&nbsp;`);
