@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const md5 = require('md5');
-const DEBUG = false;
+const DEBUG = true;
 function log(...args) {
   if (DEBUG) {
     console.log(...args);
@@ -150,7 +150,7 @@ log("/appts", "===", { startDate, location, locationId }, "===")
 });
 
 function prep_results(data) {
-log("prep_results", data);
+log("prep_results start", data);
   const results = {};
 
   const tags = ["OPEN", "CANCELLED", "COMPLETED", "PENDING"];
@@ -159,11 +159,14 @@ log("prep_results", data);
   }
 
   results.TOTAL = results.OPEN + results.COMPLETED;
+  log("prep_results done " +  JSON.stringify(results));
   return results;
 }
 
 router.get('/refresh/:startDate/:locationId', function (req, res, next) {
+  
   const { startDate, locationId } = req.params;
+  log("refresh " + startDate + " " + locationId);
   if (startDate == undefined) return;
   count_appts(startDate, locationId).then(
     (data) => res.send(prep_results(data))
