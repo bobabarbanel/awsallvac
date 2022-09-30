@@ -3,7 +3,7 @@ $(function () {
     const startDate = $('startDate').text().trim();
     const timeLeft = $('.countdown_timer');
     const timeStamp = $("#time");
-    const MINUTES = 1;
+    const MINUTES = 3;
 
     timeStamp.text("As of " + new Date())
     const REFRESH_TIME = MINUTES * 60 * 1000; // 3 minutes

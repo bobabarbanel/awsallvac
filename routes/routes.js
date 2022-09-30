@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const md5 = require('md5');
-const DEBUG = true;
+const DEBUG = false;
 function log(...args) {
   if (DEBUG) {
     console.log(...args);
@@ -77,10 +77,10 @@ log("count_appts", { url })
       return res.data;
     } catch (err) {
       if (err.response.status === 401) {
-log("count_appts", "401")
+log("ERROR count_appts", "401")
         // sessionToken = 
         await generate("401"); // get new value for sessionToken
-log("count_appts", { sessionToken })
+log("AFTER GENERATION count_appts", { sessionToken })
         let url = APPT_COUNT + "&sessionToken=" + sessionToken;
         try {
           const res = await axios.get(url); // try again
