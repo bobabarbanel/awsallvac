@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const md5 = require('md5');
-// try to deploy to Deno
+// try to deploy to Deno x 2
 const DEBUG = false;
 function log(...args) {
   if (DEBUG) {
