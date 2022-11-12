@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start_env": "export $(cat .env | xargs) && nodemon --watch . ./bin/www",
-    "start": "nodemon --watch . ./bin/www"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "axios": "^0.21.1",
